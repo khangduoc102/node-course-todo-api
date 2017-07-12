@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    //this line should add
+    "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec \"npm test\""
+  },
+  //this field should add
+  "engines" : {
+    "node": "6.10.3"
   },
   "author": "",
   "license": "ISC",
