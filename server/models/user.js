@@ -49,7 +49,17 @@ UserSchema.methods.toJSON= function () {
 
     return _.pick(userObject, ['_id', 'email']);
 };
+// logging out: remove token
 
+UserSchema.methods.removeToken = function (token) {
+    var user = this;
+
+    return user.update({
+        $pull: {
+            tokens: {token}
+        }
+    });
+};
 // authentication
 UserSchema.methods.generateAuthToken = function () {
     var user = this;
