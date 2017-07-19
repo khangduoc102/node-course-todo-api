@@ -291,3 +291,20 @@ describe('for POST /users/login', () => {
             });
     });
 });
+
+describe('DELETE /users/me/token', () => {
+    it('should remove token when log out', (done) => {
+        request(app)
+            .delete('/users/me/token')
+            .set('x-auth', users[0].tokens[0].token)
+            .send()
+            .expect(200)
+            .expect((res) => {
+                User.findById(users[0]._id).then((user) => {
+                    expect(user.tokens.length).toBe(0);
+                }).catch((e) => done(e));
+            })
+            .end(done)
+            // Or I can use the end funtion like above POST
+    });
+});
